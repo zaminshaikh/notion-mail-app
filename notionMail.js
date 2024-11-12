@@ -22,7 +22,7 @@ async function notionMail() {
 
     if (choice === "signup") {
       const name = readlineSync.question("Enter your name: ");
-      const email = readlineSync.question("Enter your email: ");
+      const username = readlineSync.question("Enter your username (your resulting email will be <your-username>@notion.com): ");
       const password = readlineSync.question("Enter your password: ", { hideEchoBack: true });
       const confirmPassword = readlineSync.question("Confirm your password: ", { hideEchoBack: true });
 
@@ -31,7 +31,7 @@ async function notionMail() {
         continue;
       }
 
-      await signUp(email, name, password);
+      await signUp(username, name, password);
       console.log("Sign-up successful! You can now log in.");
     } else if (choice === "login") {
       const email = readlineSync.question("Enter your email: ");
