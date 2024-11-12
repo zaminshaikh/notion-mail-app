@@ -1,0 +1,16 @@
+{
+  "name": "notion-mail-app",
+  "version": "1.0.0",
+  "description": "Notion API Integration as an SWE Intern take home assignment",
+  "main": "notionMail.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "readline-sync": "^1.4.10"
+  }
+}
