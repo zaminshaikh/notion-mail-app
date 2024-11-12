@@ -38,3 +38,5 @@ export async function readMail(user) {
       console.error("Error reading mail:", error);
     }
   }
+
+  export { readMail };
