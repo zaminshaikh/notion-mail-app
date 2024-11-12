@@ -23,6 +23,33 @@ async function sendMail(sender, recipient, message) {
   }
 }
 
+
+async function readMail(user) {
+    try {
+      const response = await notion.databases.query({
+        database_id: databaseId,
+        filter: {
+          property: "Recipient",
+          rich_text: { equals: user }
+        }
+      });
+  
+      if (response.results.length === 0) {
+        console.log("No messages found.");
+        return;
+      }
+  
+      console.log(`Messages (${response.results.length}):`);
+      response.results.forEach((page) => {
+        const sender = page.properties.Sender.rich_text[0]?.text.content || "Unknown";
+        const message = page.properties.Message.title[0]?.text.content || "No content";
+        console.log(`From: ${sender}\nMessage: ${message}\n`);
+      });
+    } catch (error) {
+      console.error("Error reading mail:", error);
+    }
+}
+
 async function main() {
   console.log("Welcome to NotionMail!");
   const action = readlineSync.question("Select an action (send/read): ").trim().toLowerCase();
@@ -34,7 +61,7 @@ async function main() {
     await sendMail(sender, recipient, message);
   } else if (action === "read") {
     const user = readlineSync.question("User: ");
-    // TODO: Read mail here
+    await readMail(user);
   } else {
     console.log("Invalid action. Please choose 'send' or 'read'.");
   }
