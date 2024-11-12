@@ -1,4 +1,4 @@
-import { notion, usersDatabaseId } from "../config";
+import { notion, usersDatabaseId } from "../config.js";
 import crypto from "crypto";
 
 /**

@@ -1,6 +1,7 @@
 {
   "name": "notion-mail-app",
   "version": "1.0.0",
+  "type": "module",
   "description": "Notion API Integration as an SWE Intern take home assignment",
   "main": "notionMail.js",
   "scripts": {

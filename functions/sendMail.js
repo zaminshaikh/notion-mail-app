@@ -1,4 +1,4 @@
-const { notion, mailDatabaseId } = require("../config");
+import { notion, mailDatabaseId } from "../config.js";
 
 /**
  * Sends a message by creating a new page in the Notion database.
@@ -7,7 +7,7 @@ const { notion, mailDatabaseId } = require("../config");
  * @param {string} recipient - The name of the recipient.
  * @param {string} message - The content of the message.
  */
-export async function sendMail(sender, recipient, message) {
+async function sendMail(sender, recipient, message) {
     try {
       // Create a new page in the specified Notion database
       await notion.pages.create({

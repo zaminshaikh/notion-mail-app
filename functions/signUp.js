@@ -1,4 +1,4 @@
-import { notion, usersDatabaseId } from "../config";
+import { notion, usersDatabaseId } from "../config.js";
 import crypto from "crypto";
 
 /**
@@ -13,14 +13,13 @@ async function signUp(email, name, password) {
     await notion.pages.create({
       parent: { database_id: usersDatabaseId },
       properties: {
+        Name: { title: [{ text: { content: name } }] },
         Email: {
-          title: [{ text: { content: email } }],
+            rich_text: [{ text: { content: email } }],
         },
-        Name: { rich_text: [{ text: { content: name } }] },
         Password: { rich_text: [{ text: { content: hashedPassword } }] },
       },
     });
-    console.log("Signed up successfully!");
   } catch (error) {
     console.error("Error signing up:", error);
   }

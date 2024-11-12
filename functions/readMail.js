@@ -1,11 +1,11 @@
-const { notion, mailDatabaseId } = require("../config");
+import { notion, mailDatabaseId } from "../config.js"
 
 /**
  * Reads messages addressed to the specified user from the Notion database.
  *
  * @param {string} user - The name of the user to read messages for.
  */
-export async function readMail(user) {
+async function readMail(user) {
     try {
       // Query the database for messages where the Recipient property matches the user
       const response = await notion.databases.query({
