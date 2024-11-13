@@ -104,7 +104,7 @@ NotionMail allows users to create accounts, send messages to other users, and re
     - [Node.js](https://nodejs.org/)
     - [npm](https://www.npmjs.com/)
 
-    ### Additional Improvements
+    ### Improvements Implemented
 
     - **User Authentication:** Users must be authenticated to send messages and to read their own messages. A user may not access emails of another user
     - **Sent Message Section:** Users can view messages they sent to others.
@@ -113,7 +113,7 @@ NotionMail allows users to create accounts, send messages to other users, and re
 
     ## Future Improvements
 
-    - **Form Validation:** Ensure the recipient is a valid email address, and the user inputs a full name when signing up
+    - **Form Validation:** Ensure the recipient is a valid email address, and the user inputs a full name and valid username when signing up.
     - **UX Enhancements:** If the user enters an incorrect password, it should prompt them for it again instead of returning them back to the login/signup loop. 
     - **Support for Attachments:** Allow the user to attach a file (max size to be determined) to their messages since Notion database supports file uploads
     - **Unread Messages:** Allow the user to read and filter messages by unread or not.
