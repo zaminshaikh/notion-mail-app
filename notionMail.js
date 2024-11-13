@@ -29,23 +29,26 @@ async function notionMail() {
       if (choice === "signup") {
         // Handle user sign-up
         const name = readlineSync.question("Enter your name: ");
-        const email = readlineSync.question("Enter your email: ");
-        const password = readlineSync.question("Enter your password: ", {
+        const username = readlineSync.question("Enter your username (Your email will be <your-username>@notion.com): ");
+        let password = readlineSync.question("Enter your password: ", {
           hideEchoBack: true, // Hides password input
         });
-        const confirmPassword = readlineSync.question(
+        let confirmPassword = readlineSync.question(
           "Confirm your password: ",
           { hideEchoBack: true }
         );
 
         // Check if passwords match
-        if (password !== confirmPassword) {
+        while (password !== confirmPassword) {
           console.log("Passwords do not match. Please try again.");
-          continue; // Restart the authentication loop
+          password = readlineSync.question("Enter your password: ", {
+            hideEchoBack: true,
+          });
+          confirmPassword = readlineSync.question( "Confirm your password: ", { hideEchoBack: true });
         }
 
         // Call the signUp function to register the user
-        await signUp(email, name, password);
+        await signUp(username, name, password);
         console.log("Sign-up successful! You can now log in.");
       } else if (choice === "login") {
         // Handle user login
