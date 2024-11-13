@@ -3,6 +3,7 @@ import { sendMail } from "./functions/sendMail.js";
 import { readMail } from "./functions/readMail.js";
 import { signUp } from "./functions/signUp.js";
 import { login } from "./functions/login.js";
+import { readSentMail } from "./functions/readSentMail.js";
 
 /**
  * Main function that runs the NotionMail application.
@@ -79,7 +80,7 @@ async function notionMail() {
     while (isAuthenticated && isRunning) {
       // Prompt user for action choice
       const action = readlineSync
-        .question("Select an action (send/read/logout/exit): ")
+        .question("Select an action (send/read/read-sent/logout/exit): ")
         .trim()
         .toLowerCase();
 
@@ -96,7 +97,11 @@ async function notionMail() {
         isAuthenticated = false; // Update authentication status
         userEmail = ""; // Clear the stored user email
         console.log("Logged out successfully.");
-      } else if (action === "exit") {
+      } else if (action === "read-sent") {
+        // Handle reading sent messages
+        await readSentMail(userEmail); // Call readSentMail function
+      }
+        else if (action === "exit") {
         // Handle application exit from the main menu
         console.log("Exiting the application. Goodbye!");
         isRunning = false; // Update running status to terminate loops

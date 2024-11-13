@@ -1,6 +1,6 @@
 # NotionMail
 
-NotionMail is a command-line application that simulates a basic email system using Notion as a backend. Users can sign up, log in, send messages to other users, and read messages addressed to them. All data is stored and managed through the Notion API.
+NotionMail is a command-line application that simulates a basic email system using Notion as a database. Users can sign up, log in, send messages to other users, read messages addressed to them and read messages they sent. All data is stored and managed through the Notion API.
 
 ## Table of Contents
 
@@ -81,6 +81,10 @@ NotionMail allows users to create accounts, send messages to other users, and re
     5. **Read Messages:**
 
         Use the `read` command to view messages addressed to you.
+    
+    6. **Read Sent Messages:**
+
+        Use the `read-sent` command to view messages you sent.
 
     ### Commands
 
@@ -88,6 +92,7 @@ NotionMail allows users to create accounts, send messages to other users, and re
     - `login`: Log into your account.
     - `send`: Send a new message.
     - `read`: Read your received messages.
+    - `read-sent`: Read your sent messages.
     - `exit`: Exit the application.
 
     ## References
@@ -102,15 +107,18 @@ NotionMail allows users to create accounts, send messages to other users, and re
     ### Additional Improvements
 
     - **User Authentication:** Users must be authenticated to send messages and to read their own messages. A user may not access emails of another user
+    - **Sent Message Section:** Users can view messages they sent to others.
     - **Timestamp for Messages:** Messages now include a timestamp indicating when they were sent. This is achieved by utilizing Notion's `created_time` property, which records the creation time of each page (message). This way we do not have to parse any time strings ourselves, it is taken care of by Notion's properties within the returned object.
     - **Exit Command:** An `exit` command has been added to allow users to terminate the application gracefully from any point in the interaction loop.
 
     ## Future Improvements
 
-    - **Unread Messages** Allow the user to read and filter messages by unread or not.
+    - **Form Validation:** Ensure the recipient is a valid email address, and the user inputs a full name when signing up
+    - **UX Enhancements:** If the user enters an incorrect password, it should prompt them for it again instead of returning them back to the login/signup loop. 
+    - **Support for Attachments:** Allow the user to attach a file (max size to be determined) to their messages since Notion database supports file uploads
+    - **Unread Messages:** Allow the user to read and filter messages by unread or not.
     - **Search Functionality:** Allow users to search through their messages.
     - **Replies:** Allow users to reply to messages
-    - **Contacts:** Users can store their contacts in a third database
 
     ## Technical Choices
 
