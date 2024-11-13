@@ -38,7 +38,6 @@ async function login(email, password) {
       console.log("Login successful!");
       return true; // Login successful
     } else {
-      console.log("Invalid email or password.");
       return false; // Login failed
     }
   } catch (error) {

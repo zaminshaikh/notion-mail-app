@@ -28,7 +28,7 @@ async function readMail(userEmail) {
       return;
     }
 
-    console.log(`Messages (${response.results.length}):`);
+    console.log(`Messages (${response.results.length}):\n`);
 
     // Loop through each message and display the sender, content, and timestamp
     response.results.forEach((page) => {
