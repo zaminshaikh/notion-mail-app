@@ -5,6 +5,7 @@
   "description": "Notion API Integration as an SWE Intern take home assignment",
   "main": "notionMail.js",
   "scripts": {
+    "start": "node notionMail.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

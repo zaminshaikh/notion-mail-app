@@ -1,21 +1,119 @@
 # NotionMail
 
-A command-line application to send and read messages using Notion as a backend.
+NotionMail is a command-line application that simulates a basic email system using Notion as a backend. Users can sign up, log in, send messages to other users, and read messages addressed to them. All data is stored and managed through the Notion API.
 
-## Features
+## Table of Contents
 
-- **Send Messages:** Create pages in a Notion database with sender, recipient, and message details.
-- **Read Messages:** (Coming soon)
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [References](#references)
+- [Future Improvements](#future-improvements)
+- [Technical Choices](#technical-choices)
 
-## Prerequisites
+## Description
 
-- [Node.js](https://nodejs.org/) installed on your machine.
-- A Notion account with access to the Notion API.
-- Create a Notion integration and obtain the API key and database ID.
+NotionMail allows users to create accounts, send messages to other users, and read received messages. It uses the Notion API to store user credentials and messages within Notion databases. The application handles user authentication, message creation, and retrieval.
 
 ## Installation
 
-1. **Clone the repository:**
+### Steps
 
-   ```sh
+> **Note:** This setup assumes that you have two Notion databases with API integrations linked.
+
+1. **Clone the Repository:**
+
+   ```bash
    git clone https://github.com/zaminshaikh/notion-mail-app.git
+
+2. **Navigate to the Project Directory:**
+
+    ```bash
+    cd notion-mail-app
+
+3. **Install Dependencies:**
+
+    ```bash
+    npm install
+
+4. **Configure Environment Variables:**
+
+    ### Configure Environment Variables
+
+    1. **Create a `.env` File:**
+
+        In the project root directory, create a file named `.env`.
+
+    2. **Add the Following Variables:**
+
+        ```env
+        NOTION_API_KEY=your_notion_api_key
+        USERS_DATABASE_ID=your_users_database_id
+        MAIL_DATABASE_ID=your_mail_database_id
+        ```
+
+    3. **Save the `.env` File:**
+
+        Ensure the file is saved to apply the environment variables.
+
+    ## Usage
+
+    ### Running the Application
+
+    1. **Start the Application:**
+
+        ```bash
+        npm start
+        ```
+
+    2. **Sign Up:**
+
+        Follow the prompts to create a new account.
+
+    3. **Log In:**
+
+        Enter your credentials to access your mailbox.
+
+    4. **Send a Message:**
+
+        Use the `send` command to compose and send a message to another user.
+
+    5. **Read Messages:**
+
+        Use the `read` command to view messages addressed to you.
+
+    ### Commands
+
+    - `signup`: Create a new user account.
+    - `login`: Log into your account.
+    - `send`: Send a new message.
+    - `read`: Read your received messages.
+    - `exit`: Exit the application.
+
+    ## References
+
+    - [README.md Writing Tool](https://readme.so/)
+    - [Notion API Documentation](https://developers.notion.com/docs/create-a-notion-integration#getting-started)
+    - [Crypto SHA256 Documentation](https://nodejs.org/api/crypto.html)
+    - [Notion Property Values](https://developers.notion.com/reference/property-value-object#title-property-values)
+    - [Node.js](https://nodejs.org/)
+    - [npm](https://www.npmjs.com/)
+
+    ### Additional Improvements
+
+    - **User Authentication:** Users must be authenticated to send messages and to read their own messages. A user may not access emails of another user
+    - **Timestamp for Messages:** Messages now include a timestamp indicating when they were sent. This is achieved by utilizing Notion's `created_time` property, which records the creation time of each page (message). This way we do not have to parse any time strings ourselves, it is taken care of by Notion's properties within the returned object.
+    - **Exit Command:** An `exit` command has been added to allow users to terminate the application gracefully from any point in the interaction loop.
+
+    ## Future Improvements
+
+    - **Unread Messages** Allow the user to read and filter messages by unread or not.
+    - **Search Functionality:** Allow users to search through their messages.
+    - **Replies:** Allow users to reply to messages
+    - **Contacts:** Users can store their contacts in a third database
+
+    ## Technical Choices
+
+    - **JavaScript/Node.js:** Chosen because Notion's official SDK is in JavaScript. Since I was building around the API, I wanted to choose an language and framework that matched the API I was using. Always pick the best suited tool for the job
+    - **Modulation:** Modulated functions into separate folder to enhance readability and help with debugging.
+    - **SHA256 Hashing:** For security, no one should have access to the password literals. Using SHA256 hashing, we ensure the user's data is protected in the case of a data breach since hashing is a one way function.
